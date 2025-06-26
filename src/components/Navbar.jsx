@@ -1,18 +1,18 @@
 import { useState } from "react";
-import "./Navbar.css";
+import styles from "./Navbar.module.scss";
 import cartIcon from "../../public/assets/cart-large-minimalistic-svgrepo-com.svg"
 
 export default function Navbar() {
   const [cartCount, setCartCount] = useState(0)
   return (
-    <nav className="navbar">
-      <div className="navbar-left">
+    <nav className={styles.navbar}>
+      <div className={styles.navbarLeft}>
         <a href="/" className="logo">
           ShopNow
         </a>
       </div>
-      <div className="navbar-center">
-        <ul className="nav-links">
+      <div className={styles.navbarCenter}>
+        <ul className={styles.navLinks}>
           <li>
             <a href="/products">Products</a>
           </li>
@@ -24,12 +24,13 @@ export default function Navbar() {
           </li>
         </ul>
       </div>
-      <div className="navbar-right">
-        <a href="/cart" className="cart-icon">
-        <img src={cartIcon} alt="cart icon" className="cart-svg"/>
-          <span className="cart-count">{cartCount}</span>
+      <div className={styles.navbarRight}>
+        <a href="/cart" className={styles.cartIcon}>
+        <img src={cartIcon} alt="cart icon" className={styles.cartSvg}/>
+          <span className={styles.cartCount}>{cartCount}</span>
         </a>
       </div>
     </nav>
   );
 }
+

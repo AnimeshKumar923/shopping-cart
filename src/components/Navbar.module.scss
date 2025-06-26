@@ -1,0 +1,68 @@
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  // width: 100%;
+}
+
+.navbarLeft .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbarCenter {
+  .navLinks {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin-right: 1rem;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
+
+// .navbar-center .nav-links
+
+// .navbar-center .nav-links
+
+.navbarRight {
+  display: flex;
+  align-items: center;
+  .cartIcon {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1rem;
+    position: relative;
+  }
+
+  .cartCount {
+    background-color: #f44336;
+    color: #fff;
+    border-radius: 50%;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+  }
+}
+
+.cartSvg {
+  width: 3rem;
+  height: 3rem;
+}
