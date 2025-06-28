@@ -21,7 +21,6 @@ export default function Products() {
       {products.map((product) => {
         return <Item key={product.id} item={product} />;
       })}
-      <h1>Hello</h1>
     </div>
 
     // <div className="content">

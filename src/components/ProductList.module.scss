@@ -1,4 +1,7 @@
 .content{
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 5rem;
+  margin-top: 6rem;
+  gap: 2rem;
 }
