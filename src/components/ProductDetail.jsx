@@ -22,7 +22,9 @@ export default function ProductDetail() {
       <div>
         <strong>Price: </strong>${product.price}
       </div>
-      <button className={styles.btn} type="button" onClick={updateCart}>
+      <button className={styles.btn} 
+      type="button" 
+      onClick={()=> updateCart(product)}>
         Add to Cart
       </button>
     </div>

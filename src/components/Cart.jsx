@@ -1,7 +1,10 @@
+import { useOutletContext } from "react-router-dom";
+
 export default function Cart() {
   const cartCount = localStorage.getItem("cartCount");
+  const { cartItems } = useOutletContext();
   // For objects/arrays:
-  const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+  // const cartItems = JSON.parse(localStorage.getItem("cartItems"));
   function deleteAllItems() {
     localStorage.clear();
     window.location.reload();
