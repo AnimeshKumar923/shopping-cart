@@ -1,9 +1,8 @@
-import { useState } from "react";
 import styles from "./Navbar.module.scss";
 import cartIcon from "../../public/assets/cart-large-minimalistic-svgrepo-com.svg"
 
-export default function Navbar() {
-  const [cartCount, setCartCount] = useState(0)
+export default function Navbar({cartCount}) {
+  
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbarLeft}>
