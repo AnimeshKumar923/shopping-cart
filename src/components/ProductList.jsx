@@ -10,11 +10,11 @@ export default function Products() {
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);
-        console.log(data);
+        // console.log(data);
       });
   }, []);
 
-  console.log(products);
+  // console.log(products);
 
   return (
     <div className={styles.content}>

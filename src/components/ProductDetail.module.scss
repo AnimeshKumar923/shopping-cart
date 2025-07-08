@@ -22,4 +22,20 @@
       cursor: pointer;
     }
   }
+  .itemAmount {
+    display: flex;
+    flex-direction: column;
+    // font-weight: 900;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+  }
+  .counter {
+    display: flex;
+    justify-content: space-evenly;
+    // margin-top: 1.2rem;
+  }
+  .counterText {
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
