@@ -10,6 +10,13 @@ export default function ProductDetail() {
   function increaseItemCount() {
     setItemAmount((prev) => prev + 1);
   }
+  function decreaseItemCount() {
+    if (itemAmount < 1) {
+      // alert("Item cannot be negative!");
+      return;
+    }
+    setItemAmount((prev) => prev - 1);
+  }
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`, { mode: "cors" })
@@ -31,9 +38,11 @@ export default function ProductDetail() {
         <span className={styles.counterText}>Item Count</span>
         <br />
         <div className={styles.counter}>
-          <span className="decrement">-</span>
-          <span>{itemAmount}</span>
-          <span className="increment" onClick={increaseItemCount}>
+          <span className={styles.decBtn} onClick={decreaseItemCount}>
+            -
+          </span>
+          <span className={styles.countNum}>{itemAmount}</span>
+          <span className={styles.incBtn} onClick={increaseItemCount}>
             +
           </span>
         </div>

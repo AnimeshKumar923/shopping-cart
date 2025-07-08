@@ -38,4 +38,14 @@
     display: flex;
     justify-content: space-evenly;
   }
+  .decBtn,
+  .countNum,
+  .incBtn {
+    font-weight: 800;
+    font-size: x-large;
+  }
+  .incBtn:hover,
+  .decBtn:hover{
+    cursor: pointer;
+  }
 }
