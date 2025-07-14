@@ -13,23 +13,23 @@ export default function Layout() {
     return stored ? JSON.parse(stored) : [];
   });
 
-  function updateCart(product) {
+  function updateCart(product, itemAmount) {
     setCartItems((prevItems) => {
       const exists = prevItems.find((item) => item.id === product.id);
       if (exists) {
         return prevItems.map((item) =>
           item.id === product.id
-            ? { ...item, amount: (item.amount || 1) + 1 }
+            ? { ...item, amount: item.amount + itemAmount }
             : item
         );
       } else {
         return [
           ...prevItems,
-          { id: product.id, name: product.title, price: product.price, amount: 1 },
+          { id: product.id, name: product.title, price: product.price, amount: itemAmount },
         ];
       }
     });
-    setCartCount((prev) => prev + 1);
+    setCartCount((prev) => prev + itemAmount);
   }
 
   useEffect(() => {

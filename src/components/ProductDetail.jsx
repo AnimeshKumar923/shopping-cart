@@ -1,12 +1,13 @@
 import { Link, useOutletContext, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "./ProductDetail.module.scss";
+
 export default function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const { updateCart } = useOutletContext();
-
   const [itemAmount, setItemAmount] = useState(1);
+
   function increaseItemCount() {
     setItemAmount((prev) => prev + 1);
   }
@@ -35,13 +36,21 @@ export default function ProductDetail() {
         <strong>Price: </strong>${product.price}
       </div>
       <div className={styles.itemAmount}>
-        <span className={styles.counterText}>Item Count</span>
+        <span className={styles.itemCountText}>Item Count</span>
         <br />
         <div className={styles.counter}>
           <span className={styles.decBtn} onClick={decreaseItemCount}>
             -
           </span>
-          <span className={styles.countNum}>{itemAmount}</span>
+          <input
+            type="number"
+            value={itemAmount}
+            className={styles.countNum}
+            onChange={(e) => {
+              setItemAmount(e.target.value);
+            }}
+          />
+          {/* <span className={styles.countNum}>{itemAmount}</span> */}
           <span className={styles.incBtn} onClick={increaseItemCount}>
             +
           </span>
@@ -50,7 +59,7 @@ export default function ProductDetail() {
       <button
         className={styles.btn}
         type="button"
-        onClick={() => updateCart(product)}
+        onClick={() => updateCart(product, itemAmount)}
       >
         Add to Cart
       </button>
