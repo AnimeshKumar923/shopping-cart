@@ -25,7 +25,7 @@ export default function Layout() {
       } else {
         return [
           ...prevItems,
-          { id: product.id, name: product.title, price: product.price, amount: itemAmount },
+          { id: product.id, name: product.title, price: product.price, amount: itemAmount, image:product.image },
         ];
       }
     });
