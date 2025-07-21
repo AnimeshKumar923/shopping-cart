@@ -47,7 +47,7 @@ export default function ProductDetail() {
             value={itemAmount}
             className={styles.countNum}
             onChange={(e) => {
-              setItemAmount(e.target.value);
+              setItemAmount(Number(e.target.value));
             }}
           />
           {/* <span className={styles.countNum}>{itemAmount}</span> */}

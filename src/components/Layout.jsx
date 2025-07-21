@@ -5,6 +5,8 @@ import { Outlet } from "react-router-dom";
 export default function Layout() {
   const [cartCount, setCartCount] = useState(() => {
     const count = localStorage.getItem("cartCount");
+    console.log(count);
+
     return count ? parseInt(count, 10) : 0;
   });
 
@@ -25,7 +27,13 @@ export default function Layout() {
       } else {
         return [
           ...prevItems,
-          { id: product.id, name: product.title, price: product.price, amount: itemAmount, image:product.image },
+          {
+            id: product.id,
+            name: product.title,
+            price: product.price,
+            amount: itemAmount,
+            image: product.image,
+          },
         ];
       }
     });

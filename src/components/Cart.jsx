@@ -2,7 +2,7 @@ import styles from "./Cart.module.scss";
 import { Link, useOutletContext } from "react-router-dom";
 
 export default function Cart() {
-  // const cartCount = localStorage.getItem("cartCount");
+  const cartCount = localStorage.getItem("cartCount");
   const { cartItems } = useOutletContext();
   let subtotal = 0;
   let tax = 0;
