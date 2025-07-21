@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import Products from "./components/ProductList";
 import ProductDetail from "./components/ProductDetail";
 import Cart from "./components/Cart";
+import Payment from "./components/Payment";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "products", element: <Products /> },
       { path: "products/:id", element: <ProductDetail /> },
       { path: "cart", element: <Cart /> },
+      { path: "payment", element: <Payment /> },
     ],
   },
 ]);

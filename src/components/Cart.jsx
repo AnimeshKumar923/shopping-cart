@@ -1,9 +1,18 @@
 import styles from "./Cart.module.scss";
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 export default function Cart() {
-  const cartCount = localStorage.getItem("cartCount");
+  // const cartCount = localStorage.getItem("cartCount");
   const { cartItems } = useOutletContext();
+  let subtotal = 0;
+  let tax = 0;
+
+  cartItems.map((item, index) => {
+    subtotal += cartItems[index].price * cartItems[index].amount;
+  });
+
+  tax += Math.round(0.04 * subtotal * 100) / 100;
+  let total = Math.round((subtotal + tax) * 100) / 100;
   // For objects/arrays:
   // const cartItems = JSON.parse(localStorage.getItem("cartItems"));
   function deleteAllItems() {
@@ -13,26 +22,45 @@ export default function Cart() {
 
   return (
     <div className={styles.checkout}>
-      {cartItems.map((item, index) => {
-        return (
-          <>
-            <img
-              src={cartItems[index].image}
-              alt={`${cartItems[index].name}Image`}
-              className={styles.img}
-            />
-            <div className="productName">{cartItems[index].name}</div>
-            <div className="itemPrice">
-              Item Price: <span className="priceDigit">${cartItems[index].price}</span>
-            </div>
-            <div className="itemAmount">Item count: {cartItems[index].amount}</div>
-          </>
-        );
-      })}
+      <div className={styles.orderDetails}>
+        {cartItems.map((item, index) => {
+          return (
+            <>
+              <div className={styles.itemDetails}>
+                <img
+                  src={cartItems[index].image}
+                  alt={`${cartItems[index].name}Image`}
+                  className={styles.img}
+                />
+                <div className="productName">{cartItems[index].name}</div>
+                <div className="itemPrice">
+                  Item Price:{" "}
+                  <span className="priceDigit">${cartItems[index].price}</span>
+                </div>
+                <div className="itemAmount">
+                  Item count: {cartItems[index].amount}
+                </div>
+              </div>
+            </>
+          );
+        })}
+      </div>
+      <div className={styles.orderSummary}>
+        <h1>Order summary</h1>
+        <h3>Subtotal: ${subtotal}</h3>
+        <h3>Tax: ${tax}</h3>
+        <h2>Total: ${total}</h2>
+        {/* <div>Cart count: {cartCount}</div> */}
+        {/* <div>Cart items: {JSON.stringify(cartItems)}</div> */}
+        <button className={styles.paymentBtn} onClick={deleteAllItems}>
+          Clear all item
+        </button>
+        <br />
+        <Link to="/payment">
+          <button className={styles.paymentBtn}>Proceed to payment</button>
+        </Link>
+      </div>
       <br />
-      <div>Cart count: {cartCount}</div>
-      <div>Cart items: {JSON.stringify(cartItems)}</div>
-      <button onClick={deleteAllItems}>Clear all item</button>
     </div>
   );
 }

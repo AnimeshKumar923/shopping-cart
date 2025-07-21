@@ -1,7 +1,29 @@
-.img {
-  width: 15rem;
-}
-.checkout{
+.checkout {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  // gap: 20rem;
+  margin-top: 8rem;
+  // flex-direction: column;
+  .img {
+    width: 15rem;
+  }
+  .orderDetails {
+    display: flex;
+    gap: 5rem;
+  }
+  .itemDetails {
+    max-width: 15rem;
+  }
+
+  .orderSummary {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20rem;
+    
+  }
+  
+  .paymentBtn{
+    width: 10rem;
+    height: 2rem;
+  }
 }
