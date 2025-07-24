@@ -5,7 +5,7 @@ import styles from "./ProductDetail.module.scss";
 export default function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const { updateCart } = useOutletContext();
+  const { updateCart, cartItems } = useOutletContext();
   const [itemAmount, setItemAmount] = useState(1);
 
   function increaseItemCount() {
@@ -17,6 +17,17 @@ export default function ProductDetail() {
       return;
     }
     setItemAmount((prev) => prev - 1);
+  }
+  // console.log(`cart items: ${cartItems}`);
+  // console.log(cartItems);
+  // console.log(`product`);
+  // console.log(product);
+  // console.log(`currentItemCount: ${currentItemCount}`);
+
+  function getCurrentItemCount() {
+    if (!product) return 0;
+    const found = cartItems.find((item) => item.name === product.title);
+    return found ? found.amount : 0;
   }
 
   useEffect(() => {
@@ -39,9 +50,9 @@ export default function ProductDetail() {
         <span className={styles.itemCountText}>Item Count</span>
         <br />
         <div className={styles.counter}>
-          <span className={styles.decBtn} onClick={decreaseItemCount}>
+          <button className={styles.decBtn} onClick={decreaseItemCount}>
             -
-          </span>
+          </button>
           <input
             type="number"
             value={itemAmount}
@@ -50,11 +61,18 @@ export default function ProductDetail() {
               setItemAmount(Number(e.target.value));
             }}
           />
-          {/* <span className={styles.countNum}>{itemAmount}</span> */}
-          <span className={styles.incBtn} onClick={increaseItemCount}>
+          <button
+            className={styles.incBtn}
+            onClick={() => {
+              increaseItemCount();
+            }}
+          >
             +
-          </span>
+          </button>
         </div>
+        <span className={styles.countNum}>
+          Unit in cart: {getCurrentItemCount()}
+        </span>
       </div>
       <button
         className={styles.btn}

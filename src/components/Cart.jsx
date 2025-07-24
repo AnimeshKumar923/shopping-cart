@@ -27,7 +27,7 @@ export default function Cart() {
           return (
             <>
               <Link to={`/products/${cartItems[index].id}`}>
-                <div className={styles.itemDetails}>
+                <div className={styles.itemDetails} >
                   <img
                     src={cartItems[index].image}
                     alt={`${cartItems[index].name}Image`}
@@ -51,7 +51,7 @@ export default function Cart() {
       </div>
       <div className={styles.orderSummary}>
         <h1>Order summary</h1>
-        <h3>Subtotal: ${subtotal}</h3>
+        <h3>Subtotal: ${Math.round(subtotal*100)/100}</h3>
         <h3>Tax: ${tax}</h3>
         <h2>Total: ${total}</h2>
         {/* <div>Cart count: {cartCount}</div> */}
