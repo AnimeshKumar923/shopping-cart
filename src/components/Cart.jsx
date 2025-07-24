@@ -2,7 +2,7 @@ import styles from "./Cart.module.scss";
 import { Link, useOutletContext } from "react-router-dom";
 
 export default function Cart() {
-  const cartCount = localStorage.getItem("cartCount");
+  // const cartCount = localStorage.getItem("cartCount");
   const { cartItems } = useOutletContext();
   let subtotal = 0;
   let tax = 0;
@@ -26,21 +26,25 @@ export default function Cart() {
         {cartItems.map((item, index) => {
           return (
             <>
-              <div className={styles.itemDetails}>
-                <img
-                  src={cartItems[index].image}
-                  alt={`${cartItems[index].name}Image`}
-                  className={styles.img}
-                />
-                <div className="productName">{cartItems[index].name}</div>
-                <div className="itemPrice">
-                  Item Price:{" "}
-                  <span className="priceDigit">${cartItems[index].price}</span>
+              <Link to={`/products/${cartItems[index].id}`}>
+                <div className={styles.itemDetails}>
+                  <img
+                    src={cartItems[index].image}
+                    alt={`${cartItems[index].name}Image`}
+                    className={styles.img}
+                  />
+                  <div className="productName">{cartItems[index].name}</div>
+                  <div className="itemPrice">
+                    Item Price:{" "}
+                    <span className="priceDigit">
+                      ${cartItems[index].price}
+                    </span>
+                  </div>
+                  <div className="itemAmount">
+                    Item count: {cartItems[index].amount}
+                  </div>
                 </div>
-                <div className="itemAmount">
-                  Item count: {cartItems[index].amount}
-                </div>
-              </div>
+              </Link>
             </>
           );
         })}
