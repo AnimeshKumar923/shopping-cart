@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import Cart from "../src/components/Cart";
 import { vi } from "vitest";
-import userEvent from "@testing-library/user-event";
 
 describe("cart calculations", () => {
   // Mock useOutletContext to provide cartItems
@@ -38,7 +37,6 @@ describe("functionalities", () => {
     render(<Cart />);
     expect(screen.getByText(/Order summary/i)).toBeInTheDocument();
   });
-
 
   // commented out due to lack of clarity on how to test this functionality
   // it("clear all data", async () => {

@@ -34,7 +34,7 @@ export default function Cart() {
                     className={styles.img}
                   />
                   <div className="productName">{cartItems[index].name}</div>
-                  <div className="itemPrice">
+                  <div className="itemPrice" data-testid="item-price">
                     Item Price:{" "}
                     <span className="priceDigit">
                       ${cartItems[index].price}
@@ -56,7 +56,11 @@ export default function Cart() {
         <h2 data-testid="total">Total: ${total}</h2>
         {/* <div>Cart count: {cartCount}</div> */}
         {/* <div>Cart items: {JSON.stringify(cartItems)}</div> */}
-        <button className={styles.paymentBtn} onClick={deleteAllItems} data-testid='clear-all'>
+        <button
+          className={styles.paymentBtn}
+          onClick={deleteAllItems}
+          data-testid="clear-all"
+        >
           Clear all item
         </button>
         <br />
