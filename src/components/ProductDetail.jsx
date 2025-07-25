@@ -1,6 +1,6 @@
 import { Link, useOutletContext, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import styles from "./ProductDetail.module.scss";
+import styles from "../styles/ProductDetail.module.scss";
 
 export default function ProductDetail() {
   const { id } = useParams();

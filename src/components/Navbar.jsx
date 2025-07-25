@@ -1,4 +1,4 @@
-import styles from "./Navbar.module.scss";
+import styles from "../styles/Navbar.module.scss";
 import cartIcon from "../../public/assets/cart-large-minimalistic-svgrepo-com.svg"
 
 export default function Navbar({cartCount}) {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "./ProductList.module.scss";
+import styles from "../styles/ProductList.module.scss";
 import Item from "./Item";
 
 export default function Products() {

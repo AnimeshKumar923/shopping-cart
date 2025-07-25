@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "./Item.module.scss";
+import styles from "../styles/Item.module.scss";
 
 // const image = `https://fastly.picsum.photos/id/454/500/500.jpg?hmac=jeGzMQ6lOuO8jN6YOL5KejAD7EF2nrFJ6qk-WnYUyK4`;
 export default function Item({ item }) {

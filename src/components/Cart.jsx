@@ -1,4 +1,4 @@
-import styles from "./Cart.module.scss";
+import styles from "../styles/Cart.module.scss";
 import { Link, useOutletContext } from "react-router-dom";
 
 export default function Cart() {
