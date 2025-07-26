@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import ProductDetail from "../src/components/ProductDetail";
 import ProductList from "../src/components/ProductList";
 import { MemoryRouter } from "react-router-dom";
 
