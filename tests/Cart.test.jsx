@@ -1,21 +1,31 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach } from "vitest";
 import Cart from "../src/components/Cart";
 import { vi } from "vitest";
+import userEvent from "@testing-library/user-event";
 
-describe("cart calculations", () => {
+let cartItems = [
+  { id: 1, name: "Test", price: 10, amount: 2 },
+  { id: 2, name: "Test2", price: 5, amount: 1 },
+];
+function setCartItems(props) {
+  // if(props) return 0;
+  cartItems = props;
+}
+
+beforeEach(() => {
   // Mock useOutletContext to provide cartItems
   vi.mock("react-router-dom", () => ({
     ...vi.importActual("react-router-dom"),
     useOutletContext: () => ({
-      cartItems: [
-        { id: 1, name: "Test", price: 10, amount: 2 },
-        { id: 2, name: "Test2", price: 5, amount: 1 },
-      ],
+      cartItems,
+      setCartItems,
     }),
     Link: () => {},
   }));
+});
 
+describe("cart calculations", () => {
   it("calculates cart subtotal", () => {
     render(<Cart />);
     expect(screen.getByText(/Subtotal: \$25/)).toBeInTheDocument();
@@ -39,17 +49,19 @@ describe("functionalities", () => {
   });
 
   // commented out due to lack of clarity on how to test this functionality
-  // it("clear all data", async () => {
-  //   const user = userEvent.setup();
-  //   const mockClearCart = vi.fn();
+  it("clear all data", async () => {
+    const user = userEvent.setup();
 
-  //   render(<Cart />);
+    // Capture rerender function
+    const { rerender } = render(<Cart />);
+    
+    const button = screen.getByRole("button", { name: "Clear all item" });
 
-  //   const button = screen.getByTestId("clear-all", { name: "Clear all item" });
+    await user.click(button);
+    
+    // Re-render with updated context
+    rerender(<Cart />);
 
-  //   await user.click(button);
-
-  //   expect(mockClearCart).toHaveBeenCalled();
-  //   // expect(screen.getByTestId("total")).toHaveTextContent("Total: $0");
-  // });
+    expect(screen.getByTestId("total")).toHaveTextContent("Total: $0");
+  });
 });
