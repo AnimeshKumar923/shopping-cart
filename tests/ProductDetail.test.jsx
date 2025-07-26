@@ -17,6 +17,8 @@ const mockResponse = {
   },
 };
 
+const mockUpdateCart = vi.fn();
+
 beforeEach(() => {
   vi.mock("react-router-dom", () => ({
     ...vi.importActual("react-router-dom"),
@@ -25,6 +27,7 @@ beforeEach(() => {
         { id: 1, name: "Test", price: 10, amount: 2 },
         { id: 2, name: "Test2", price: 5, amount: 1 },
       ],
+      updateCart: mockUpdateCart,
     }),
     useParams: () => ({ id: "1" }),
   }));
@@ -40,7 +43,7 @@ afterEach(() => {
   window.fetch.mockRestore();
 });
 
-describe("functionality test", () => {
+describe("render components", () => {
   it("renders loading status", () => {
     render(<ProductDetail />);
     expect(screen.getByText(/loading/i)).toBeInTheDocument();
@@ -68,7 +71,9 @@ describe("functionality test", () => {
     const button = await screen.findByRole("button", { name: "-" });
     expect(button).toBeInTheDocument();
   });
+});
 
+describe("cart functionalities", () => {
   it("increase item count when increment button is clicked", async () => {
     render(<ProductDetail />);
     const button = await screen.findByRole("button", { name: "+" });
@@ -103,5 +108,26 @@ describe("functionality test", () => {
     await userEvent.click(button);
 
     expect(input.value).not.toBe("-1");
+  });
+
+  it("add product to cart", async () => {
+    render(<ProductDetail />);
+    const incrementBtn = await screen.findByRole("button", { name: "+" });
+    const addToCartBtn = await screen.findByRole("button", {
+      name: /add to cart/i,
+    });
+    const input = screen.getByRole("spinbutton");
+
+    expect(incrementBtn).toBeInTheDocument();
+    expect(screen.getByText("Unit in cart: 0")).toBeInTheDocument();
+    expect(input.value).toBe("1");
+
+    await userEvent.click(incrementBtn);
+
+    expect(input.value).toBe("2");
+
+    await userEvent.click(addToCartBtn);
+
+    expect(mockUpdateCart).toHaveBeenCalled();
   });
 });

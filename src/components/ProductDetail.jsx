@@ -21,7 +21,7 @@ export default function ProductDetail() {
   // console.log(`cart items: ${cartItems}`);
   // console.log(cartItems);
   // console.log(`product`);
-  console.log(product);
+  // console.log(product);
   // console.log(`currentItemCount: ${currentItemCount}`);
 
   function getCurrentItemCount() {
