@@ -1,4 +1,4 @@
-import { Link, useOutletContext, useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from "../styles/ProductDetail.module.scss";
 
@@ -21,7 +21,7 @@ export default function ProductDetail() {
   // console.log(`cart items: ${cartItems}`);
   // console.log(cartItems);
   // console.log(`product`);
-  // console.log(product);
+  console.log(product);
   // console.log(`currentItemCount: ${currentItemCount}`);
 
   function getCurrentItemCount() {
