@@ -5,7 +5,7 @@ import "./styles/index.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./components/Home";
-import Products from "./components/ProductList";
+import ProductList from "./components/ProductList";
 import ProductDetail from "./components/ProductDetail";
 import Cart from "./components/Cart";
 import Payment from "./components/Payment";
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     element: <Layout />, // Use Layout for all routes
     children: [
       { index: true, element: <Home /> },
-      { path: "products", element: <Products /> },
+      { path: "products", element: <ProductList /> },
       { path: "products/:id", element: <ProductDetail /> },
       { path: "cart", element: <Cart /> },
       { path: "payment", element: <Payment /> },
