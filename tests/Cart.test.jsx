@@ -48,7 +48,6 @@ describe("functionalities", () => {
     expect(screen.getByText(/Order summary/i)).toBeInTheDocument();
   });
 
-  // commented out due to lack of clarity on how to test this functionality
   it("clear all data", async () => {
     const user = userEvent.setup();
 
