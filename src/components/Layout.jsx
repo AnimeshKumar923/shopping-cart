@@ -51,7 +51,7 @@ export default function Layout() {
   return (
     <>
       <Navbar cartCount={cartCount} />
-      <Outlet context={{ cartCount, updateCart, setCartItems, cartItems }} />
+      <Outlet context={{ cartCount, setCartCount, updateCart, setCartItems, cartItems }} />
     </>
   );
 }

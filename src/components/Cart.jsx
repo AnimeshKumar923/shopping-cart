@@ -3,7 +3,7 @@ import { Link, useOutletContext } from "react-router-dom";
 
 export default function Cart() {
   // const cartCount = localStorage.getItem("cartCount");
-  const { cartItems, setCartItems } = useOutletContext();
+  const { cartItems, setCartItems, setCartCount } = useOutletContext();
   let subtotal = 0;
   let tax = 0;
 
@@ -18,6 +18,7 @@ export default function Cart() {
   function deleteAllItems() {
     localStorage.clear();
     setCartItems([]);
+    setCartCount(0);
   }
 
   return (

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, beforeEach, vitest } from "vitest";
 import Cart from "../src/components/Cart";
 import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
@@ -9,8 +9,8 @@ let cartItems = [
   { id: 2, name: "Test2", price: 5, amount: 1 },
 ];
 function setCartItems(props) {
-  // if(props) return 0;
   cartItems = props;
+  return cartItems;
 }
 
 beforeEach(() => {
@@ -20,6 +20,7 @@ beforeEach(() => {
     useOutletContext: () => ({
       cartItems,
       setCartItems,
+      setCartCount: vi.fn(),
     }),
     Link: () => {},
   }));
@@ -50,17 +51,16 @@ describe("functionalities", () => {
 
   it("clear all data", async () => {
     const user = userEvent.setup();
-
-    // Capture rerender function
     const { rerender } = render(<Cart />);
-    
     const button = screen.getByRole("button", { name: "Clear all item" });
 
+    expect(button).toBeInTheDocument();
+    expect(screen.getByTestId("total")).toHaveTextContent("Total: $26");
+
     await user.click(button);
-    
-    // Re-render with updated context
+
     rerender(<Cart />);
 
-    expect(screen.getByTestId("total")).toHaveTextContent("Total: $0");
+    expect(await screen.findByTestId("total")).toHaveTextContent("Total: $0");
   });
 });
