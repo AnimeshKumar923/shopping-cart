@@ -1,17 +1,15 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, beforeEach, vitest } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import Cart from "../src/components/Cart";
-import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 let cartItems = [
   { id: 1, name: "Test", price: 10, amount: 2 },
   { id: 2, name: "Test2", price: 5, amount: 1 },
 ];
-function setCartItems(props) {
-  cartItems = props;
-  return cartItems;
-}
+
+const mockSetCartItems = vi.fn();
+const mockSetCartCount = vi.fn();
 
 beforeEach(() => {
   // Mock useOutletContext to provide cartItems
@@ -19,8 +17,8 @@ beforeEach(() => {
     ...vi.importActual("react-router-dom"),
     useOutletContext: () => ({
       cartItems,
-      setCartItems,
-      setCartCount: vi.fn(),
+      setCartItems: mockSetCartItems,
+      setCartCount: mockSetCartCount,
     }),
     Link: () => {},
   }));
@@ -49,9 +47,9 @@ describe("functionalities", () => {
     expect(screen.getByText(/Order summary/i)).toBeInTheDocument();
   });
 
-  it("clear all data", async () => {
+  it("calls deleteAllItems when button is clicked", async () => {
     const user = userEvent.setup();
-    const { rerender } = render(<Cart />);
+    render(<Cart />);
     const button = screen.getByRole("button", { name: "Clear all item" });
 
     expect(button).toBeInTheDocument();
@@ -59,8 +57,7 @@ describe("functionalities", () => {
 
     await user.click(button);
 
-    rerender(<Cart />);
-
-    expect(await screen.findByTestId("total")).toHaveTextContent("Total: $0");
+    expect(mockSetCartItems).toHaveBeenCalledWith([]);
+    expect(mockSetCartCount).toHaveBeenCalledWith(0);
   });
 });
